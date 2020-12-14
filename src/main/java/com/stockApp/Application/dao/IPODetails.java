@@ -23,5 +23,14 @@ public class IPODetails {
     Time time;
     Integer totalNumberOfShares;
     Float pricePerShare;
-   
+    
+    public void equalto(IPODetails i) {
+        this.companyName = i.companyName;
+        this.date = i.date;
+        this.pricePerShare =i.pricePerShare;
+        this.time = i.time;
+        this.stockExchange = i.stockExchange;
+        this.totalNumberOfShares = i.totalNumberOfShares;
+        
+    }
 }

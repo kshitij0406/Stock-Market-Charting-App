@@ -16,5 +16,11 @@ public class Company {
     
     String companyName, ceo, boardOfDirectors, stockexchange;
     
-
+    
+    public void equalto(Company c) {
+        this.boardOfDirectors = c.boardOfDirectors;
+        this.ceo = c.ceo;
+        this.companyName = c.companyName;
+        this.stockexchange = c.stockexchange;
+    }
 }
