@@ -1,10 +1,8 @@
 package com.stockApp.Application.controller;
 
-import com.stockApp.Application.exception.ResourceNotFoundException;
-import com.stockApp.Application.service.UserService;
 import com.stockApp.Application.dao.User;
+import com.stockApp.Application.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -32,7 +30,7 @@ public class UserController {
     }
     
     @GetMapping("/username/{username}")
-    public User getUserByUsername(@PathVariable String username){
+    public Optional<User> getUserByUsername(@PathVariable String username) {
         
         return userService.getUserByUsername(username);
     }

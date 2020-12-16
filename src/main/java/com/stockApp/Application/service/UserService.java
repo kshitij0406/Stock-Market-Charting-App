@@ -5,7 +5,6 @@ import com.stockApp.Application.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
 import java.util.Optional;
 
 @Service
@@ -22,7 +21,7 @@ public class UserService {
         return userRepository.findAll();
     }
     
-    public User getUserByUsername(String username){
+    public Optional<User> getUserByUsername(String username) {
         return userRepository.findByUsername(username);
     }
     
