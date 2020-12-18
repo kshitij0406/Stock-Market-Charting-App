@@ -1,6 +1,7 @@
 package com.stockApp.Application.controller;
 
 
+import com.stockApp.Application.dao.AuthenticationResponse;
 import com.stockApp.Application.dao.LoginRequest;
 import com.stockApp.Application.dao.RegisterRequest;
 import com.stockApp.Application.service.AuthService;
@@ -30,10 +31,10 @@ public class AuthController {
         authService.verifyAccount(token);
         return new ResponseEntity<String>("Account activated Successfully", HttpStatus.OK);
     }
-    
+
     @PostMapping("/login")
-    public void login(@RequestBody LoginRequest loginRequest) {
-        authService.login(loginRequest);
+    public AuthenticationResponse login(@RequestBody LoginRequest loginRequest) {
+        return authService.login(loginRequest);
         
     }
     

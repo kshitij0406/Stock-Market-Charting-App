@@ -5,9 +5,12 @@ import com.stockApp.Application.dao.*;
 import com.stockApp.Application.exception.SpringRedditException;
 import com.stockApp.Application.repository.UserRepository;
 import com.stockApp.Application.repository.VerificationTokenRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.stockApp.Application.security.JwtUtil;
+import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -17,22 +20,17 @@ import java.util.UUID;
 
 
 @Service
+@AllArgsConstructor
 public class AuthService {
-    @Autowired
-    private UserRepository userRepository;
-    
-    @Autowired
-    VerificationTokenRepository verificationTokenRepository;
-    
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-    
-    @Autowired
-    MailService mailService;
-    
-    @Autowired
-    AuthenticationManager authenticationManager;
-    
+
+    private final UserRepository userRepository;
+    private final VerificationTokenRepository verificationTokenRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final MailService mailService;
+    private final AuthenticationManager authenticationManager;
+    private final JwtUtil jwtUtil;
+    private final UserDetailsServiceImpl userDetailsServiceImpl;
+
     @Transactional
     public void signup(RegisterRequest registerRequest) {
         User user = new User();
@@ -65,7 +63,7 @@ public class AuthService {
         verificationToken.orElseThrow(() -> new SpringRedditException("Invallid Token"));
         fetchUserAndEnable(verificationToken.get());
     }
-    
+
     @Transactional
     private void fetchUserAndEnable(VerificationToken verificationToken) {
         String username = verificationToken.getUser().getUsername();
@@ -73,9 +71,14 @@ public class AuthService {
         user.setConfirm(true);
         userRepository.save(user);
     }
-    
-    public void login(LoginRequest loginRequest) {
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUsername(),
+
+    public AuthenticationResponse login(LoginRequest loginRequest) {
+        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUsername(),
                 loginRequest.getPassword()));
+
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        String token = jwtUtil.generateToken(userDetailsServiceImpl.loadUserByUsername(loginRequest.getUsername()));
+        return new AuthenticationResponse(token, loginRequest.getUsername());
+
     }
 }
