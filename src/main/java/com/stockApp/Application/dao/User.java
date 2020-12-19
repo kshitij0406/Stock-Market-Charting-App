@@ -3,6 +3,7 @@ package com.stockApp.Application.dao;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,6 +14,7 @@ import javax.persistence.Id;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Slf4j
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,8 +23,8 @@ public class User {
     String username, email, type, password;
     Integer mobile;
     boolean confirm;
-    
-    
+
+
     public void equalto(User u) {
         this.username = u.username;
         this.email = u.email;

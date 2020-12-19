@@ -5,7 +5,7 @@ import com.stockApp.Application.dao.*;
 import com.stockApp.Application.exception.SpringRedditException;
 import com.stockApp.Application.repository.UserRepository;
 import com.stockApp.Application.repository.VerificationTokenRepository;
-import com.stockApp.Application.security.JwtUtil;
+import com.stockApp.Application.security.JwtProvider;
 import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -28,7 +28,7 @@ public class AuthService {
     private final PasswordEncoder passwordEncoder;
     private final MailService mailService;
     private final AuthenticationManager authenticationManager;
-    private final JwtUtil jwtUtil;
+    private final JwtProvider jwtProvider;
     private final UserDetailsServiceImpl userDetailsServiceImpl;
 
     @Transactional
@@ -77,7 +77,7 @@ public class AuthService {
                 loginRequest.getPassword()));
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        String token = jwtUtil.generateToken(userDetailsServiceImpl.loadUserByUsername(loginRequest.getUsername()));
+        String token = jwtProvider.generateToken(authentication);
         return new AuthenticationResponse(token, loginRequest.getUsername());
 
     }

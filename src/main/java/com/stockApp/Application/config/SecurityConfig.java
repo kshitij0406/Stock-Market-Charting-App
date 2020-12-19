@@ -1,5 +1,6 @@
 package com.stockApp.Application.config;
 
+import com.stockApp.Application.security.JwtAuthenticationFilter;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final UserDetailsService userDetailsService;
-
+    private final JwtAuthenticationFilter jwtAuthenticationFilter;
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().
@@ -29,9 +30,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 antMatchers("/auth/**").
                 permitAll().
                 anyRequest().
-                authenticated();
-
-        // http.addFilterBefore(jwtAuthenticationFilter,UsernamePasswordAuthenticationFilter.class);
+                authenticated().and().
+                addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
     }
 
