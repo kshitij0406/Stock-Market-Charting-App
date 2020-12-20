@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface IPODetailsRepository extends JpaRepository<IPODetails,Integer> {
+
 }
