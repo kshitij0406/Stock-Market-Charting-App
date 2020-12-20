@@ -10,7 +10,6 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/ipo/")
-@CrossOrigin(origins = "*" , allowedHeaders = "*")
 public class IPODetailsController {
     
     @Autowired

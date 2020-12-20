@@ -2,7 +2,6 @@ package com.stockApp.Application.controller;
 
 
 import com.stockApp.Application.dao.StockExchange;
-import com.stockApp.Application.dao.User;
 import com.stockApp.Application.service.StockExchangeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -11,7 +10,6 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/stockexchange/")
-@CrossOrigin(origins = "*" , allowedHeaders = "*")
 public class StockExchangeController {
     
     @Autowired

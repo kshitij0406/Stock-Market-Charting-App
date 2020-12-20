@@ -28,12 +28,8 @@ public class UserService {
     public Optional<User> getUserByUsername(String username) {
         return userRepository.findByUsername(username);
     }
-    
-    public void addUser(User user) {
-        userRepository.save(user);
-    }
-    
-    
+
+
     public void updateUser(User user, Integer id) {
         User temp = getUserById(id).orElse(null);
         temp.equalto(user);

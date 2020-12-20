@@ -11,7 +11,6 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/users")
-@CrossOrigin(origins = "*", allowedHeaders = "*")
 @Slf4j
 public class UserController {
     @Autowired
@@ -36,14 +35,8 @@ public class UserController {
         
         return userService.getUserByUsername(username);
     }
-    
-    
-    @PostMapping(value = "/add")
-    public void addUser(@RequestBody User user){
-        userService.addUser(user);
-    }
-    
-  
+
+
     @PutMapping(value = "/update/{id}")
     public void updateUser(@RequestBody User user, @PathVariable int id) {
         userService.updateUser(user, id);

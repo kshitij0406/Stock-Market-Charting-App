@@ -2,26 +2,27 @@ package com.stockApp.Application.controller;
 
 
 import com.stockApp.Application.dao.Company;
-import com.stockApp.Application.dao.User;
 import com.stockApp.Application.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
 @RestController
 @RequestMapping("/company/")
-@CrossOrigin(origins = "*" , allowedHeaders = "*")
 public class CompanyController {
     
     @Autowired
     CompanyService companyService;
-    
-    
+
+
     @GetMapping("/all")
-    public Iterable<Company> getAllCompany(){
-        
-        return companyService.getAllCompany();
+    public ResponseEntity<Iterable<Company>> getAllCompany() {
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(companyService.getAllCompany());
+
     }
     
     
