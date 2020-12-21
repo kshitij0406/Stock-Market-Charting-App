@@ -2,7 +2,7 @@ package com.stockApp.Application.service;
 
 
 import com.stockApp.Application.dao.NotificationEmail;
-import com.stockApp.Application.exception.SpringRedditException;
+import com.stockApp.Application.exception.CustomException;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +38,7 @@ public class MailService {
             log.info("Activation email sent!!");
         } catch (MailException e) {
             log.error("Exception occurred when sending mail", e);
-            throw new SpringRedditException("Exception occurred when sending mail to " + notificationEmail.getRecipient() + e);
+            throw new CustomException("Exception occurred when sending mail to " + notificationEmail.getRecipient() + e);
         }
     }
 }

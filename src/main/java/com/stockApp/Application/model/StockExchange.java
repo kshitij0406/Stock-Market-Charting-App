@@ -1,4 +1,4 @@
-package com.stockApp.Application.dao;
+package com.stockApp.Application.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,18 +13,19 @@ import javax.persistence.Id;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Company {
+public class StockExchange {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Integer id;
     
-    String companyName, ceo, boardOfDirectors, stockexchange;
+    String stockExchangeName, brief, contactAddress, remarks;
     
     
-    public void equalto(Company c) {
-        this.boardOfDirectors = c.boardOfDirectors;
-        this.ceo = c.ceo;
-        this.companyName = c.companyName;
-        this.stockexchange = c.stockexchange;
+    public void equalto(StockExchange s){
+        this.brief = s.brief;
+        this.contactAddress = s.contactAddress;
+        this.stockExchangeName = s.stockExchangeName;
+        this.remarks = s.remarks;
     }
+    
 }

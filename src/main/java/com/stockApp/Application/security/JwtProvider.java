@@ -1,5 +1,5 @@
 package com.stockApp.Application.security;
-import com.stockApp.Application.exception.SpringRedditException;
+import com.stockApp.Application.exception.CustomException;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import org.springframework.beans.factory.annotation.Value;
@@ -32,7 +32,7 @@ public class JwtProvider {
             InputStream resourceAsStream = getClass().getResourceAsStream("/mykey.jks");
             keyStore.load(resourceAsStream, "secret".toCharArray());
         } catch (KeyStoreException | CertificateException | NoSuchAlgorithmException | IOException e) {
-            throw new SpringRedditException("Exception occurred while loading keystore", e);
+            throw new CustomException("Exception occurred while loading keystore", e);
         }
 
     }
@@ -60,7 +60,7 @@ public class JwtProvider {
         try {
             return (PrivateKey) keyStore.getKey("mykey", "secret".toCharArray());
         } catch (KeyStoreException | NoSuchAlgorithmException | UnrecoverableKeyException e) {
-            throw new SpringRedditException("Exception occured while retrieving public key from keystore", e);
+            throw new CustomException("Exception occured while retrieving public key from keystore", e);
         }
     }
 
@@ -73,7 +73,7 @@ public class JwtProvider {
         try {
             return keyStore.getCertificate("mykey").getPublicKey();
         } catch (KeyStoreException e) {
-            throw new SpringRedditException("Exception occured while " +
+            throw new CustomException("Exception occured while " +
                     "retrieving public key from keystore", e);
         }
     }

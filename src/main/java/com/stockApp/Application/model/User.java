@@ -1,5 +1,6 @@
-package com.stockApp.Application.dao;
+package com.stockApp.Application.model;
 
+import com.stockApp.Application.dao.RegisterRequest;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -35,11 +36,11 @@ public class User {
     }
     
     public void mapToRegisterRequest(RegisterRequest registerRequest) {
-        this.type = registerRequest.type;
-        this.mobile = registerRequest.mobile;
-        this.email = registerRequest.email;
-        this.username = registerRequest.username;
-        this.password = registerRequest.password;
+        this.type = registerRequest.getType();
+        this.mobile = registerRequest.getMobile();
+        this.email = registerRequest.getEmail();
+        this.username = registerRequest.getUsername();
+        this.password = registerRequest.getPassword();
         this.confirm = false;
     }
     

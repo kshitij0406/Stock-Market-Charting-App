@@ -1,4 +1,4 @@
-package com.stockApp.Application.dao;
+package com.stockApp.Application.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

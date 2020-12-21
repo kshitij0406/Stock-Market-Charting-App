@@ -1,6 +1,6 @@
 package com.stockApp.Application.controller;
 
-import com.stockApp.Application.dao.User;
+import com.stockApp.Application.model.User;
 import com.stockApp.Application.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -2,7 +2,9 @@ package com.stockApp.Application.service;
 
 
 import com.stockApp.Application.dao.*;
-import com.stockApp.Application.exception.SpringRedditException;
+import com.stockApp.Application.exception.CustomException;
+import com.stockApp.Application.model.User;
+import com.stockApp.Application.model.VerificationToken;
 import com.stockApp.Application.repository.UserRepository;
 import com.stockApp.Application.repository.VerificationTokenRepository;
 import com.stockApp.Application.security.JwtProvider;
@@ -62,14 +64,14 @@ public class AuthService {
     
     public void verifyAccount(String token) {
         Optional<VerificationToken> verificationToken = verificationTokenRepository.findByToken(token);
-        verificationToken.orElseThrow(() -> new SpringRedditException("Invallid Token"));
+        verificationToken.orElseThrow(() -> new CustomException("Invallid Token"));
         fetchUserAndEnable(verificationToken.get());
     }
 
     @Transactional
     private void fetchUserAndEnable(VerificationToken verificationToken) {
         String username = verificationToken.getUser().getUsername();
-        User user = userRepository.findByUsername(username).orElseThrow(() -> new SpringRedditException("User Not Found with username" + username));
+        User user = userRepository.findByUsername(username).orElseThrow(() -> new CustomException("User Not Found with username" + username));
         user.setConfirm(true);
         userRepository.save(user);
     }

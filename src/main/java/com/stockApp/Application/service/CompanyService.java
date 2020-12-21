@@ -1,8 +1,7 @@
 package com.stockApp.Application.service;
 
 
-import com.stockApp.Application.dao.Company;
-import com.stockApp.Application.dao.User;
+import com.stockApp.Application.model.Company;
 import com.stockApp.Application.repository.CompanyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

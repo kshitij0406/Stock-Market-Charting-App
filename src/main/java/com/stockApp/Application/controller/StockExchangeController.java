@@ -1,7 +1,7 @@
 package com.stockApp.Application.controller;
 
 
-import com.stockApp.Application.dao.StockExchange;
+import com.stockApp.Application.model.StockExchange;
 import com.stockApp.Application.service.StockExchangeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

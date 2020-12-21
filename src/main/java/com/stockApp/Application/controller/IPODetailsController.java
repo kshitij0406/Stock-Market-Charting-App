@@ -1,7 +1,7 @@
 package com.stockApp.Application.controller;
 
 
-import com.stockApp.Application.dao.IPODetails;
+import com.stockApp.Application.model.IPODetails;
 import com.stockApp.Application.service.IPODetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

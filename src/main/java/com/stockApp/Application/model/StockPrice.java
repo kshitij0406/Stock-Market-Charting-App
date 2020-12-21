@@ -1,4 +1,4 @@
-package com.stockApp.Application.dao;
+package com.stockApp.Application.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -6,8 +6,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import java.sql.Time;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Entity
 @Data
@@ -19,7 +19,7 @@ public class StockPrice {
     
     String stockExchange;
     Integer pricePerShare;
-    Date date;
-    Time time;
+    LocalDate date;
+    LocalTime time;
 
 }

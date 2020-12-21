@@ -1,6 +1,6 @@
 package com.stockApp.Application.repository;
 
-import com.stockApp.Application.dao.Company;
+import com.stockApp.Application.model.Company;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

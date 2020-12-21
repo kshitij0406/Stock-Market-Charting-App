@@ -1,7 +1,7 @@
 package com.stockApp.Application.service;
 
 
-import com.stockApp.Application.dao.IPODetails;
+import com.stockApp.Application.model.IPODetails;
 import com.stockApp.Application.repository.IPODetailsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

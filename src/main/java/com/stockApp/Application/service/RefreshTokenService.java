@@ -1,7 +1,7 @@
 package com.stockApp.Application.service;
 
-import com.stockApp.Application.dao.RefreshToken;
-import com.stockApp.Application.exception.SpringRedditException;
+import com.stockApp.Application.exception.CustomException;
+import com.stockApp.Application.model.RefreshToken;
 import com.stockApp.Application.repository.RefreshTokenRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -27,7 +27,7 @@ public class RefreshTokenService {
 
     void validateRefreshToken(String token) {
         refreshTokenRepository.findByToken(token)
-                .orElseThrow(() -> new SpringRedditException("Invalid refresh Token"));
+                .orElseThrow(() -> new CustomException("Invalid refresh Token"));
     }
 
     public void deleteRefreshToken(String token) {

@@ -1,4 +1,4 @@
-package com.stockApp.Application.dao;
+package com.stockApp.Application.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,16 +8,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.time.Instant;
 
-
-@Entity
 @Data
-@NoArgsConstructor
+@Entity
 @AllArgsConstructor
-public class Sectors {
+@NoArgsConstructor
+public class RefreshToken {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    Integer id;
-    
-    String sectorName,brief;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String token;
+    private Instant createdDate;
 }

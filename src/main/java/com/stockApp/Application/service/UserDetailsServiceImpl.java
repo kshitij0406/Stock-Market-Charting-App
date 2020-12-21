@@ -1,6 +1,6 @@
 package com.stockApp.Application.service;
 
-import com.stockApp.Application.dao.User;
+import com.stockApp.Application.model.User;
 import com.stockApp.Application.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
