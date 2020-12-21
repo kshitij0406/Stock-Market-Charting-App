@@ -6,7 +6,6 @@ import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -28,9 +27,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.cors().and()
-                .csrf().disable()
+     /*   http.csrf().disable()
                 .authorizeRequests()
+                .antMatchers("/auth/**")
+                .permitAll()
+                .anyRequest().
+                authenticated();
+
+        http.cors().disable().authorizeRequests()
                 .antMatchers(HttpMethod.GET, "/auth/**")
                 .permitAll()
                 .antMatchers(HttpMethod.POST, "/auth/**")
@@ -50,9 +54,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/stockexchange/**")
                 .permitAll()
                 .anyRequest().
-                authenticated();
-
-
+                authenticated();;
+*/
+        http.cors().and().csrf()
+                .disable()
+                .authorizeRequests()
+                .antMatchers("/auth/**")
+                .permitAll()
+                .anyRequest().
+                authenticated();;
         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
     }
