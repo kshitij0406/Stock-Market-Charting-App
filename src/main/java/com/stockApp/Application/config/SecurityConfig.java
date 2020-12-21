@@ -27,35 +27,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-     /*   http.csrf().disable()
-                .authorizeRequests()
-                .antMatchers("/auth/**")
-                .permitAll()
-                .anyRequest().
-                authenticated();
 
-        http.cors().disable().authorizeRequests()
-                .antMatchers(HttpMethod.GET, "/auth/**")
-                .permitAll()
-                .antMatchers(HttpMethod.POST, "/auth/**")
-                .permitAll()
-                .antMatchers(HttpMethod.GET, "/users/**")
-                .permitAll()
-                .antMatchers(HttpMethod.POST, "/users/**")
-                .permitAll()
-                .antMatchers(HttpMethod.PUT, "/users/**")
-                .permitAll()
-                .antMatchers(HttpMethod.DELETE, "/users/**")
-                .permitAll()
-                .antMatchers("/company/**")
-                .permitAll()
-                .antMatchers("/ipo/**")
-                .permitAll()
-                .antMatchers("/stockexchange/**")
-                .permitAll()
-                .anyRequest().
-                authenticated();;
-*/
         http.cors().and().csrf()
                 .disable()
                 .authorizeRequests()
@@ -63,6 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .anyRequest().
                 authenticated();;
+
         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
     }
