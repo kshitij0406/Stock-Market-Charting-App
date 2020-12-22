@@ -47,7 +47,7 @@ public class AuthService {
         userRepository.save(user);
         String token = generateVerificationToken(user);
         mailService.sendMail(new NotificationEmail("please Activate Your Account",
-                user.getEmail(), "Thank You for Signing Up. Click on below link to activate your account. " +
+                user.getEmail(), "Thank You for Signing Up. Click on below link to activate your account.     " +
                 "  " +
                 "http://localhost:8080/auth/accountVerification/" + token));
     }

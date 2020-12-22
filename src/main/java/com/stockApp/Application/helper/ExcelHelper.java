@@ -10,7 +10,6 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -70,7 +69,7 @@ public class ExcelHelper {
                     switch (cellIdx) {
                         case 0:
                             System.out.println("Case 0 ");
-                            //stockPrice.setCompanyCode((int) currentCell.getNumericCellValue());
+                           stockPrice.setCompanyCode(currentCell.getStringCellValue());
                             System.out.println("Case 0 end");
                             break;
 
@@ -116,57 +115,4 @@ public class ExcelHelper {
     }
 
 
-    public static List<StockPrice> parseExcelFile(InputStream is) {
-        try {
-            Workbook workbook = new XSSFWorkbook(is);
-
-            Sheet sheet = workbook.getSheet("Sheet1");
-            Iterator<Row> rows = sheet.iterator();
-
-            List<StockPrice> lstCustomers = new ArrayList<StockPrice>();
-
-            int rowNumber = 0;
-            while (rows.hasNext()) {
-                Row currentRow = rows.next();
-
-                // skip header
-                if (rowNumber == 0) {
-                    rowNumber++;
-                    continue;
-                }
-
-                Iterator<Cell> cellsInRow = currentRow.iterator();
-
-                StockPrice cust = new StockPrice();
-
-                int cellIndex = 0;
-                while (cellsInRow.hasNext()) {
-                    Cell currentCell = cellsInRow.next();
-
-                    if (cellIndex == 0) { // ID
-                        cust.setCompanyCode((int) currentCell.getNumericCellValue());
-                    } else if (cellIndex == 1) { // Name
-                        cust.setStockExchange(currentCell.getStringCellValue());
-                    } else if (cellIndex == 2) { // Address
-                        cust.setPricePerShare((float) currentCell.getNumericCellValue());
-                    } else if (cellIndex == 3) { // Age
-                        cust.setDate(currentCell.getLocalDateTimeCellValue().toLocalDate());
-                    } else if (cellIndex == 4) { // Age
-                        cust.setTime(currentCell.getLocalDateTimeCellValue().toLocalTime());
-                    }
-
-                    cellIndex++;
-                }
-
-                lstCustomers.add(cust);
-            }
-
-            // Close WorkBook
-            workbook.close();
-
-            return lstCustomers;
-        } catch (IOException e) {
-            throw new RuntimeException("FAIL! -> message = " + e.getMessage());
-        }
-    }
 }

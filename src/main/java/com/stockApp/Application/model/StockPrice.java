@@ -21,7 +21,7 @@ public class StockPrice {
     Integer id;
 
 
-    Integer companyCode;
+    String companyCode;
     String stockExchange;
     Float pricePerShare;
     LocalDate date;
